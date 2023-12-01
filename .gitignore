@@ -1,0 +1,8 @@
+### generated stuff ###
+coverage
+dist
+test.db
+.vscode
+
+### node ###
+node_modules

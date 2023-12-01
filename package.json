@@ -1,0 +1,35 @@
+{
+  "name": "typeorm-seeding-test",
+  "version": "6.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "migration:create": "ts-node node_modules/typeorm/cli.js migration:create src/migrations/migrations/migration",
+    "migration:generate": "ts-node node_modules/typeorm/cli.js migration:generate --dataSource ./datasource.ts src/migrations/migration",
+    "migration:run": "ts-node node_modules/typeorm/cli.js --dataSource ./datasource.ts migration:run",
+    "migration:clear": "rimraf src/migrations/*.*",
+    "migration:revert": "ts-node node_modules/typeorm/cli.js --dataSource ./datasource.ts migration:revert",
+    "migration:show": "ts-node node_modules/typeorm/cli.js --dataSource ./datasource.ts migration:show",
+    "db:make": "npm run migration:create && npm run migration:generate && npm run migration:run",
+    "db:backup": "copy database.sqlite database.sqlite.backup",
+    "db:clear": "ts-node ./scripts/clear-db.ts",
+    "seed:run": "ts-node ./node_modules/@jorgebodega/typeorm-seeding/dist/cli.js seed -d ./datasource.ts src/seeders/*.ts",
+    "seed:config": "ts-node ./node_modules/@jorgebodega/typeorm-seeding/dist/cli.js config -d ./datasource.ts ./src/seeds/*.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "aaronngray@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^8.3.1",
+    "@jorgebodega/typeorm-factory": "1.4.0",
+    "@jorgebodega/typeorm-seeding": "^6.0.1",
+    "sqlite3": "^5.1.6",
+    "ts-node": "10.9.1",
+    "typeorm": "0.3.17",
+    "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "@tsconfig/node18-strictest": "^1.0.0"
+  }
+}
